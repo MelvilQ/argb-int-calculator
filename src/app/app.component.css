@@ -1,0 +1,23 @@
+#container {
+	position: relative;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 700px;
+	height: 200px;
+}
+
+.item {
+	height: 120px;
+	padding: 13px 30px;
+	background-color: lightskyblue;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+}
+
+input[type="text"]{
+	width: 70px;
+}

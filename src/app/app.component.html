@@ -1,0 +1,21 @@
+<h2>ARGB ↔ int calculator</h2>
+
+<div id="container" [ngStyle]="colorPreviewStyle">
+
+	<div class="item">
+		<div>R: <input type="text" [(ngModel)]="rStr"></div>
+		<div>G: <input type="text" [(ngModel)]="gStr"></div>
+		<div>B: <input type="text" [(ngModel)]="bStr"></div>
+		<div>A: <input type="text" [(ngModel)]="aStr"></div>
+	</div>
+
+	<div class="item">
+		<div><button (click)="calcIntValFromArgb()">ARGB → int</button></div>
+		<div><button (click)="calcArgbFromIntVal()">ARGB ← int</button></div>
+	</div>
+
+	<div class="item">
+		<div>Int value: <input type="text" [(ngModel)]="iStr"></div>
+	</div>
+
+</div>
