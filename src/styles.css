@@ -1,4 +1,13 @@
 body {
 	text-align: center;
 	background-color: lightgray;
+	font-family: 'Nunito', sans-serif;
+}
+
+button {
+	font-family: 'Nunito', sans-serif;
+}
+
+input[type='text']{
+	font-family: 'Nunito', sans-serif;
 }

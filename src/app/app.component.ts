@@ -54,10 +54,10 @@ export class AppComponent {
 
   constructor() {
     this.a = 255;
-    this.r = 0;
-    this.g = 0;
-    this.b = 0;
-    this.i = 0;
+    this.r = 255;
+    this.g = 255;
+    this.b = 255;
+    this.i = -1;
   }
 
   toZeroPaddedHex(n: number){
@@ -68,12 +68,17 @@ export class AppComponent {
     return result;
   }
 
-  get rgbHex(): string {
-    return '#' + this.toZeroPaddedHex(this.r) + this.toZeroPaddedHex(this.g) + this.toZeroPaddedHex(this.b);
+  get rgbaHex(): string {
+    const hexStr = '#'
+      + this.toZeroPaddedHex(this.r)
+      + this.toZeroPaddedHex(this.g)
+      + this.toZeroPaddedHex(this.b)
+      + this.toZeroPaddedHex(this.a);
+    return hexStr.toUpperCase();
   }
 
   get colorPreviewStyle() {
-    return ({'background-color': this.rgbHex});
+    return ({'background-color': this.rgbaHex});
   }
 
   calcIntValFromArgb() {

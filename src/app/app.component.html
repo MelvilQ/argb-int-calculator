@@ -1,12 +1,13 @@
 <h2>ARGB ↔ int calculator</h2>
+<p>{{rgbaHex}}</p>
 
 <div id="container" [ngStyle]="colorPreviewStyle">
 
 	<div class="item">
-		<div>R: <input type="text" [(ngModel)]="rStr"></div>
-		<div>G: <input type="text" [(ngModel)]="gStr"></div>
-		<div>B: <input type="text" [(ngModel)]="bStr"></div>
-		<div>A: <input type="text" [(ngModel)]="aStr"></div>
+		<div>R: <input type="text" [(ngModel)]="rStr" (keydown.enter)="calcIntValFromArgb()" (focusout)="calcIntValFromArgb()"></div>
+		<div>G: <input type="text" [(ngModel)]="gStr" (keydown.enter)="calcIntValFromArgb()" (focusout)="calcIntValFromArgb()"></div>
+		<div>B: <input type="text" [(ngModel)]="bStr" (keydown.enter)="calcIntValFromArgb()" (focusout)="calcIntValFromArgb()"></div>
+		<div>A: <input type="text" [(ngModel)]="aStr" (keydown.enter)="calcIntValFromArgb()" (focusout)="calcIntValFromArgb()"></div>
 	</div>
 
 	<div class="item">
@@ -15,7 +16,7 @@
 	</div>
 
 	<div class="item">
-		<div>Int value: <input type="text" [(ngModel)]="iStr"></div>
+		<div>Int value: <input type="text" [(ngModel)]="iStr" (keydown.enter)="calcArgbFromIntVal()" (focusout)="calcArgbFromIntVal()"></div>
 	</div>
 
 </div>
