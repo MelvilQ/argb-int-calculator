@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  static readonly argbRgbaRegex = /^[0-9a-fA-F]{8}$/;
+
+  argbStr: string = '#FFFFFFFF';
+  rgbaStr: string = '#FFFFFFFF';
   aStr: string = '';
   rStr: string = '';
   gStr: string = '';
@@ -53,6 +58,12 @@ export class AppComponent {
   }
 
   constructor() {
+    this.reset();
+  }
+
+  reset() {
+    this.argbStr = '#FFFFFFFF';
+    this.rgbaStr = '#FFFFFFFF';
     this.a = 255;
     this.r = 255;
     this.g = 255;
@@ -77,12 +88,23 @@ export class AppComponent {
     return hexStr.toUpperCase();
   }
 
+  get argbHex(): string {
+    const hexStr = '#'
+      + this.toZeroPaddedHex(this.a)
+      + this.toZeroPaddedHex(this.r)
+      + this.toZeroPaddedHex(this.g)
+      + this.toZeroPaddedHex(this.b);
+    return hexStr.toUpperCase();
+  }
+
   get colorPreviewStyle() {
     return ({'background-color': this.rgbaHex});
   }
 
   calcIntValFromArgb() {
     this.i = (this.a << 24) + (this.r << 16) + (this.g << 8) + (this.b << 0);
+    this.rgbaStr = this.rgbaHex;
+    this.argbStr = this.argbHex;
   }
 
   calcArgbFromIntVal() {
@@ -90,5 +112,33 @@ export class AppComponent {
     this.r = 0xff & this.i >>> 16;
     this.g = 0xff & this.i >>> 8;
     this.b = 0xff & this.i;
+    this.rgbaStr = this.rgbaHex;
+    this.argbStr = this.argbHex;
+  }
+
+  calcIntValFromHexArgb() {
+    const argbWithoutHash = this.argbStr.replace('#', '');
+    if (!AppComponent.argbRgbaRegex.test(argbWithoutHash)) {
+      this.reset();
+      return;
+    }
+    this.a = parseInt(argbWithoutHash.substring(0, 2), 16);
+    this.r = parseInt(argbWithoutHash.substring(2, 4), 16);
+    this.g = parseInt(argbWithoutHash.substring(4, 6), 16);
+    this.b = parseInt(argbWithoutHash.substring(6, 8), 16);
+    this.calcIntValFromArgb();
+  }
+
+  calcIntValFromHexRgba() {
+    const rgbaWithoutHash = this.rgbaStr.replace('#', '');
+    if (!AppComponent.argbRgbaRegex.test(rgbaWithoutHash)) {
+      this.reset();
+      return;
+    }
+    this.r = parseInt(rgbaWithoutHash.substring(0, 2), 16);
+    this.g = parseInt(rgbaWithoutHash.substring(2, 4), 16);
+    this.b = parseInt(rgbaWithoutHash.substring(4, 6), 16);
+    this.a = parseInt(rgbaWithoutHash.substring(6, 8), 16);
+    this.calcIntValFromArgb();
   }
 }
